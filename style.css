@@ -1,0 +1,250 @@
+/* =====================================================
+   FONTS & VARIABLES
+   ===================================================== */
+:root {
+  --color-text: #f0ece4;
+  --color-text-dim: rgba(240, 236, 228, 0.6);
+  --color-card-bg: rgba(255, 255, 255, 0.07);
+  --color-card-border: rgba(255, 255, 255, 0.15);
+  --color-card-hover: rgba(255, 255, 255, 0.13);
+  --color-accent: #c9a96e;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+}
+
+/* =====================================================
+   RESET & BASE
+   ===================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* =====================================================
+   VIDEO BACKGROUND
+   ===================================================== */
+.video-wrapper {
+  position: fixed;       /* Stays in place as you scroll */
+  inset: 0;              /* Shorthand for top/right/bottom/left: 0 */
+  z-index: -1;           /* Sits behind everything else */
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* Fills the frame without stretching */
+}
+
+/* Dark overlay so text stays readable against the video */
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* =====================================================
+   MAIN LAYOUT
+   ===================================================== */
+.content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  gap: 3rem;
+}
+
+/* =====================================================
+   HEADER / HERO
+   ===================================================== */
+.hero {
+  text-align: center;
+}
+
+.site-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 7vw, 5rem);  /* Scales with screen width */
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.site-tagline {
+  margin-top: 0.75rem;
+  font-weight: 300;
+  font-size: clamp(0.85rem, 2vw, 1rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+/* =====================================================
+   ORG CARDS
+   ===================================================== */
+.org-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+  max-width: 480px;      /* Cards never get too wide on large screens */
+}
+
+.org-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.5rem;
+  text-decoration: none;
+  color: var(--color-text);
+
+  /* Frosted glass effect */
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 6px;
+  backdrop-filter: blur(10px);         /* The frosted glass blur */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+
+  /* Smooth hover transition */
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.org-card:hover {
+  background: var(--color-card-hover);
+  border-color: var(--color-accent);
+  transform: translateX(4px);          /* Subtle slide on hover */
+}
+
+.org-name {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+}
+
+.org-arrow {
+  color: var(--color-accent);
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.org-card:hover .org-arrow {
+  transform: translateX(4px);
+}
+
+/* =====================================================
+   ORG DETAIL GRID (sub-pages)
+   ===================================================== */
+
+/* Two-column grid on wider screens, single column on mobile */
+.org-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 860px;
+}
+
+/* A section groups related cards under a heading */
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Mission statement spans both columns */
+.detail-section.full-width {
+  grid-column: 1 / -1;
+}
+
+.section-heading {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-card-border);
+}
+
+/* Stack to single column on small screens */
+@media (max-width: 600px) {
+  .org-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .detail-section.full-width {
+    grid-column: 1;
+  }
+}
+
+/* =====================================================
+   CONTACT CARDS (sub-pages)
+   ===================================================== */
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.1rem 1.5rem;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.contact-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.contact-value {
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.contact-link {
+  font-weight: 300;
+  font-size: 1rem;
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mission-text {
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--color-text-dim);
+}
+
+/* =====================================================
+   BACK LINK
+   ===================================================== */
+.back-link {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--color-accent);
+}
