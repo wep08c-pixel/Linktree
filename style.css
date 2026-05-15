@@ -181,6 +181,33 @@ body {
 }
 
 /* =====================================================
+   ORG LOGO
+   ===================================================== */
+.logo-wrapper {
+  margin-bottom: 1.5rem;
+
+  /* Light frosted card — gives dark logo the contrast it needs */
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 8px;
+  padding: 1.2rem 2rem;
+
+  /* Soft shadow so it lifts off the dark background */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.org-logo {
+  display: block;          /* Removes default inline spacing under image */
+  max-width: 220px;        /* Caps the width — won't stretch on large screens */
+  max-height: 100px;       /* Caps the height for tall logos */
+  width: auto;
+  height: auto;
+  object-fit: contain;     /* Preserves aspect ratio within those bounds */
+}
+
+/* =====================================================
    ORG DETAIL GRID (sub-pages)
    ===================================================== */
 
